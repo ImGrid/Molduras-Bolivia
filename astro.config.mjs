@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mbimportadora.com', // TODO: actualizar con dominio real
+  site: 'https://moldurasbolivia.netlify.app', // TODO: actualizar cuando se tenga dominio propio
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
