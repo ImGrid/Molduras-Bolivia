@@ -1,0 +1,210 @@
+---
+import fondo2 from '../assets/fondos/fondo2.png';
+import fondo1 from '../assets/fondos/fondo1.jpg';
+
+const whatsappNumber = '59170000000'; // TODO: reemplazar con numero real del cliente
+const whatsappMessage = encodeURIComponent('Hola, vi su página web y me gustaría solicitar una cotización para un enmarcado.');
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+---
+
+<section class="cta-section">
+  <div class="cta-bg" style={`background-image: url(${fondo2.src})`}></div>
+  <div class="cta-gradient"></div>
+
+  <div class="cta-frame">
+    <!-- Moldura naranja texturizada (4 franjas) -->
+    <div class="cta-moulding cta-moulding--top" style={`background-image: url(${fondo1.src})`}></div>
+    <div class="cta-moulding cta-moulding--bottom" style={`background-image: url(${fondo1.src})`}></div>
+    <div class="cta-moulding cta-moulding--left" style={`background-image: url(${fondo1.src})`}></div>
+    <div class="cta-moulding cta-moulding--right" style={`background-image: url(${fondo1.src})`}></div>
+
+    <!-- Líneas decorativas exteriores -->
+    <div class="cta-deco-line cta-deco-line--v1"></div>
+    <div class="cta-deco-line cta-deco-line--v2"></div>
+    <div class="cta-deco-line cta-deco-line--h1"></div>
+    <div class="cta-deco-line cta-deco-line--h2"></div>
+
+    <p class="cta-eyebrow">Hablemos de tu proyecto</p>
+    <h2 class="cta-title">Cada recuerdo merece un buen marco</h2>
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="cta-button">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Pedir Cotización por WhatsApp
+    </a>
+    <p class="cta-micro">Sin formularios. Respuesta en minutos.</p>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background: var(--color-charcoal);
+    padding: 96px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Fondo texturizado oscuro */
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .cta-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(28, 25, 23, 0.15) 0%, rgba(28, 25, 23, 0.5) 80%);
+  }
+
+  /* Marco contenedor */
+  .cta-frame {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding: 72px 56px;
+    text-align: center;
+  }
+
+  /* Marco exterior */
+  .cta-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 252, 249, 0.2);
+    pointer-events: none;
+  }
+
+  /* Marco interior (doble línea = moldura) */
+  .cta-frame::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(255, 252, 249, 0.08);
+    pointer-events: none;
+  }
+
+  /* Moldura naranja texturizada */
+  .cta-moulding {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  .cta-moulding--top {
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 3px;
+  }
+
+  .cta-moulding--bottom {
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    height: 3px;
+  }
+
+  .cta-moulding--left {
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: 3px;
+  }
+
+  .cta-moulding--right {
+    top: 2px;
+    bottom: 2px;
+    right: 2px;
+    width: 3px;
+  }
+
+  /* Líneas decorativas exteriores */
+  .cta-deco-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .cta-deco-line--v1 { top: -32px; bottom: -32px; width: 1px; left: -24px; }
+  .cta-deco-line--v2 { top: -32px; bottom: -32px; width: 1px; right: -24px; }
+  .cta-deco-line--h1 { left: -24px; right: -24px; height: 1px; top: -24px; }
+  .cta-deco-line--h2 { left: -24px; right: -24px; height: 1px; bottom: -24px; }
+
+  /* Tipografía */
+  .cta-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+
+  .cta-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: #FFFCF9;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .cta-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-text-on-dark);
+    line-height: 1.65;
+    margin-bottom: 40px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Botón */
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: var(--color-orange);
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: 4px;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .cta-button:hover {
+    background: var(--color-orange-hover);
+    transform: translateY(-1px);
+  }
+
+  .cta-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cta-micro {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .cta-section { padding: 64px 16px; }
+    .cta-frame { padding: 48px 24px; }
+    .cta-title { font-size: 28px; }
+    .cta-button { width: 100%; justify-content: center; padding: 16px 24px; }
+    .cta-deco-line--v1,
+    .cta-deco-line--v2 { display: none; }
+    .cta-deco-line--h1,
+    .cta-deco-line--h2 { left: 0; right: 0; }
+  }
+</style>

@@ -1,0 +1,587 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fondo from '../assets/fondos/fondo2.png';
+
+const whatsappNumber = '59170000000'; // TODO: reemplazar con numero real del cliente
+const whatsappMessage = encodeURIComponent('Hola, me interesa cotizar un enmarcado');
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+const phone = '+591 7000 0000'; // TODO: reemplazar con numero real
+const address = 'Calle Ejemplo #123, Ciudad, Bolivia'; // TODO: reemplazar con dirección real
+const mapUrl = 'https://maps.google.com/?q=Bolivia'; // TODO: reemplazar con link real a Google Maps
+const schedule = 'Lun — Sáb: 9:00 – 18:00';
+const facebookUrl = 'https://facebook.com/'; // TODO: URL real de Facebook
+---
+
+<BaseLayout
+  title="Contacto — Molduras Bolivia"
+  description="Contáctanos por WhatsApp para cotizar marcos y molduras. Importación directa, enmarcado profesional en Bolivia."
+  transparentHeader={false}
+>
+
+  <!-- Hero de página -->
+  <section class="page-hero">
+    <div class="page-hero-lines">
+      <div class="ph-line v"></div>
+      <div class="ph-line v"></div>
+      <div class="ph-line h"></div>
+    </div>
+
+    <div class="page-hero-content">
+      <h1 class="page-title">Hablemos de tu proyecto</h1>
+      <p class="page-subtitle">Cuéntanos qué necesitas y te ayudamos a encontrar el marco perfecto. Respuesta en minutos por WhatsApp.</p>
+      <div class="hero-separator"></div>
+    </div>
+  </section>
+
+  <!-- Split: WhatsApp + Info -->
+  <section class="contact-split">
+
+    <!-- Izquierda: WhatsApp (CTA principal) -->
+    <div class="wa-block">
+      <div class="wa-bg" style={`background-image: url(${fondo.src})`}></div>
+      <div class="wa-gradient"></div>
+
+      <div class="wa-corner wa-tl"></div>
+      <div class="wa-corner wa-tr"></div>
+      <div class="wa-corner wa-bl"></div>
+      <div class="wa-corner wa-br"></div>
+
+      <div class="wa-grid">
+        <div class="wa-grid-line wg-v"></div>
+        <div class="wa-grid-line wg-h"></div>
+      </div>
+
+      <div class="wa-content">
+        <h2 class="wa-heading">Escríbenos por WhatsApp</h2>
+        <p class="wa-desc">Es la forma más rápida de contactarnos. Te respondemos en minutos durante nuestro horario de atención.</p>
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="wa-button">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Iniciar conversación
+        </a>
+        <p class="wa-micro">Sin formularios · Respuesta directa</p>
+      </div>
+    </div>
+
+    <!-- Derecha: Datos de contacto -->
+    <div class="contact-info">
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <p class="contact-item-label">Teléfono</p>
+          <p class="contact-item-value">
+            <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <p class="contact-item-label">Dirección</p>
+          <p class="contact-item-value">{address}</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <p class="contact-item-label">Horario de atención</p>
+          <p class="contact-item-value">{schedule}</p>
+        </div>
+      </div>
+
+      {facebookUrl && (
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div>
+            <p class="contact-item-label">Facebook</p>
+            <p class="contact-item-value">
+              <a href={facebookUrl} target="_blank" rel="noopener noreferrer">Molduras Bolivia</a>
+            </p>
+          </div>
+        </div>
+      )}
+
+    </div>
+  </section>
+
+  <!-- Mapa estático -->
+  <section class="map-section">
+    <div class="map-container">
+      <div class="map-corner mc-tl"></div>
+      <div class="map-corner mc-tr"></div>
+      <div class="map-corner mc-bl"></div>
+      <div class="map-corner mc-br"></div>
+
+      <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="map-link" aria-label="Ver ubicación en Google Maps">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Ver ubicación en Google Maps</span>
+        <small>{address}</small>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ===== PAGE HERO ===== */
+  .page-hero {
+    padding: 120px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Grid lines decorativas (continuidad visual con homepage) */
+  .page-hero-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .ph-line {
+    position: absolute;
+    background: var(--color-border);
+  }
+
+  .ph-line.v {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+  }
+  .ph-line.v:nth-child(1) {
+    left: 20%;
+    background: linear-gradient(180deg, var(--color-border) 0%, transparent 70%);
+  }
+  .ph-line.v:nth-child(2) {
+    right: 20%;
+    background: linear-gradient(180deg, var(--color-border) 0%, transparent 70%);
+  }
+
+  .ph-line.h {
+    height: 1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 10%, var(--color-border) 30%, var(--color-border) 70%, transparent 90%);
+  }
+
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .page-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--color-text-heading);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .page-subtitle {
+    font-size: 16px;
+    color: var(--color-text-body);
+    line-height: 1.65;
+  }
+
+  .hero-separator {
+    width: 48px;
+    height: 1px;
+    background: var(--color-orange);
+    margin: 32px auto 0;
+  }
+
+  /* ===== SPLIT LAYOUT ===== */
+  .contact-split {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* ===== WHATSAPP BLOCK ===== */
+  .wa-block {
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wa-bg {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .wa-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(28, 25, 23, 0.15) 0%, rgba(28, 25, 23, 0.5) 80%);
+  }
+
+  /* Esquinas geométricas naranja (metáfora de marco) */
+  .wa-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+  }
+  .wa-corner::before,
+  .wa-corner::after {
+    content: '';
+    position: absolute;
+    background: rgba(249, 115, 22, 0.5);
+  }
+  .wa-corner::before { height: 2px; width: 100%; }
+  .wa-corner::after { width: 2px; height: 100%; }
+
+  .wa-tl { top: 0; left: 0; }
+  .wa-tl::before { top: 0; left: 0; }
+  .wa-tl::after { top: 0; left: 0; }
+
+  .wa-tr { top: 0; right: 0; }
+  .wa-tr::before { top: 0; right: 0; }
+  .wa-tr::after { top: 0; right: 0; }
+
+  .wa-bl { bottom: 0; left: 0; }
+  .wa-bl::before { bottom: 0; left: 0; }
+  .wa-bl::after { bottom: 0; left: 0; }
+
+  .wa-br { bottom: 0; right: 0; }
+  .wa-br::before { bottom: 0; right: 0; }
+  .wa-br::after { bottom: 0; right: 0; }
+
+  /* Grid decorativo dentro del bloque */
+  .wa-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .wa-grid-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .wg-v {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+  }
+
+  .wg-h {
+    height: 1px;
+    left: 0;
+    right: 0;
+    top: 55%;
+  }
+
+  .wa-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .wa-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-on-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  .wa-heading {
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .wa-desc {
+    font-size: 15px;
+    color: var(--color-text-on-dark);
+    line-height: 1.65;
+    max-width: 400px;
+    margin-bottom: 32px;
+  }
+
+  .wa-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-whatsapp);
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 32px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .wa-button:hover {
+    background: #20bd5a;
+    transform: translateY(-1px);
+  }
+  .wa-button svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .wa-micro {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-top: 16px;
+  }
+
+  /* ===== CONTACT INFO ===== */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 8px;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover .contact-icon {
+    border-color: var(--color-border-hover);
+  }
+
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-text-body);
+  }
+
+  .contact-item-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .contact-item-value {
+    font-size: 16px;
+    color: var(--color-text-heading);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .contact-item-value a {
+    color: var(--color-text-heading);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    transition: border-color 0.2s;
+  }
+  .contact-item-value a:hover {
+    border-color: var(--color-orange);
+  }
+
+  /* ===== MAP SECTION ===== */
+  .map-section {
+    max-width: 1120px;
+    margin: 0 auto 96px;
+    padding: 0 24px;
+  }
+
+  .map-container {
+    position: relative;
+    border: 1px solid var(--color-border);
+  }
+
+  /* Esquinas geométricas del mapa */
+  .map-corner {
+    position: absolute;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+  }
+  .map-corner::before,
+  .map-corner::after {
+    content: '';
+    position: absolute;
+    background: var(--color-orange);
+  }
+  .map-corner::before { height: 2px; width: 100%; }
+  .map-corner::after { width: 2px; height: 100%; }
+
+  .mc-tl { top: -1px; left: -1px; }
+  .mc-tl::before { top: 0; left: 0; }
+  .mc-tl::after { top: 0; left: 0; }
+
+  .mc-tr { top: -1px; right: -1px; }
+  .mc-tr::before { top: 0; right: 0; }
+  .mc-tr::after { top: 0; right: 0; }
+
+  .mc-bl { bottom: -1px; left: -1px; }
+  .mc-bl::before { bottom: 0; left: 0; }
+  .mc-bl::after { bottom: 0; left: 0; }
+
+  .mc-br { bottom: -1px; right: -1px; }
+  .mc-br::before { bottom: 0; right: 0; }
+  .mc-br::after { bottom: 0; right: 0; }
+
+  .map-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    height: 300px;
+    background: var(--color-alt);
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .map-link:hover {
+    background: #eceae5;
+  }
+
+  .map-link svg {
+    width: 32px;
+    height: 32px;
+    color: var(--color-text-secondary);
+  }
+  .map-link span {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-body);
+  }
+  .map-link small {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .contact-split {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding-bottom: 64px;
+    }
+
+    .page-title { font-size: 32px; }
+    .page-hero { padding: 108px 24px 56px; }
+
+    .ph-line.v:nth-child(1) { left: 8%; }
+    .ph-line.v:nth-child(2) { right: 8%; }
+  }
+
+  @media (max-width: 640px) {
+    .page-title { font-size: 28px; }
+    .page-hero { padding: 100px 24px 48px; }
+    .wa-block { padding: 32px 24px; }
+    .wa-heading { font-size: 22px; }
+    .map-link { height: 240px; }
+    .map-section { margin-bottom: 64px; }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initContactAnimations() {
+    const hero = document.querySelector('.page-hero-content');
+    const waBlock = document.querySelector('.wa-block');
+    const items = gsap.utils.toArray('.contact-item');
+    const map = document.querySelector('.map-container');
+
+    // Hero: fade in
+    if (hero) {
+      gsap.set(hero, { opacity: 0, y: 16 });
+      gsap.to(hero, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.15 });
+    }
+
+    // WhatsApp block: reveal
+    if (waBlock) {
+      gsap.set(waBlock, { opacity: 0, y: 30 });
+      ScrollTrigger.create({
+        trigger: waBlock,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(waBlock, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' });
+        },
+      });
+    }
+
+    // Contact items: staggered reveal
+    if (items.length) {
+      gsap.set(items, { opacity: 0, x: 20 });
+      ScrollTrigger.create({
+        trigger: items[0] as Element,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(items, {
+            opacity: 1, x: 0,
+            stagger: 0.12,
+            duration: 0.5,
+            ease: 'power2.out',
+          });
+        },
+      });
+    }
+
+    // Map: fade in
+    if (map) {
+      gsap.set(map, { opacity: 0 });
+      ScrollTrigger.create({
+        trigger: map,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          gsap.to(map, { opacity: 1, duration: 0.6, ease: 'power2.out' });
+        },
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', initContactAnimations);
+</script>

@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@plugin "tailwindcss-motion";
+
+/* ============================================
+   THEME — Tailwind CSS v4 CSS-first config
+   Fuente: docs/paleta-de-colores.md + docs/tipografia.md
+   ============================================ */
+@theme {
+  /* ---- Tipografia (Figtree variable font, 30 KB) ---- */
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ---- Colores: Fondos (60% de la interfaz) ---- */
+  --color-crema: #FFFCF9;
+  --color-cards: #FFFFFF;
+  --color-alt: #F5F5F0;
+
+  /* ---- Colores: Estructura / Neutros (30%) ---- */
+  --color-charcoal: #1C1917;
+  --color-charcoal-mid: #292524;
+  --color-border: #E2DFDB;
+  --color-border-hover: #FED7AA;
+
+  /* ---- Colores: Acento naranja (10%) ---- */
+  --color-orange: #F97316;
+  --color-orange-hover: #EA580C;
+  --color-orange-active: #C2410C;
+  --color-orange-light: #FFF7ED;
+  --color-orange-badge: #EA580C;
+
+  /* ---- Colores: Texto ---- */
+  --color-text-heading: #1C1917;
+  --color-text-body: #57534E;
+  --color-text-secondary: #A39D95;
+  --color-text-on-dark: #C8C3BC;
+  --color-text-white: #FFFFFF;
+
+  /* ---- Colores: Semanticos ---- */
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-warning: #F59E0B;
+  --color-whatsapp: #25D366;
+
+  /* ---- Border Radius (geometrico — preferencia del cliente) ---- */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* ---- Sombras calidas (Josh Comeau / Refactoring UI) ---- */
+  --shadow-sm: 0 1px 3px hsla(30, 10%, 40%, 0.1);
+  --shadow-md: 0 4px 6px hsla(30, 10%, 40%, 0.08), 0 1px 3px hsla(30, 10%, 40%, 0.06);
+  --shadow-lg: 0 10px 20px hsla(30, 10%, 40%, 0.08), 0 4px 8px hsla(30, 10%, 40%, 0.06);
+  --shadow-xl: 0 20px 25px hsla(30, 10%, 40%, 0.1), 0 8px 10px hsla(30, 10%, 40%, 0.06);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-body);
+  background-color: var(--color-crema);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}

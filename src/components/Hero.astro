@@ -1,0 +1,384 @@
+---
+import fondo from '../assets/fondos/fondo2.png';
+
+const whatsappNumber = '59170000000'; // TODO: reemplazar con numero real del cliente
+const whatsappMessage = encodeURIComponent('Hola, me interesa cotizar un enmarcado');
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+---
+
+<section class="hero">
+  <div class="hero-bg" style={`background-image: url(${fondo.src})`}></div>
+  <div class="hero-gradient"></div>
+
+  <!-- Grilla de lineas decorativas (4 verticales + 3 horizontales) -->
+  <div class="hero-grid">
+    <div class="g-line v"></div>
+    <div class="g-line v"></div>
+    <div class="g-line v"></div>
+    <div class="g-line v"></div>
+    <div class="g-line h"></div>
+    <div class="g-line h"></div>
+    <div class="g-line h"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="frame-wrapper">
+      <!-- 4 esquinas geometricas -->
+      <div class="frame-corner top-left"></div>
+      <div class="frame-corner top-right"></div>
+      <div class="frame-corner bottom-left"></div>
+      <div class="frame-corner bottom-right"></div>
+      <!-- Lineas conectoras sutiles -->
+      <div class="frame-line-top"></div>
+      <div class="frame-line-bottom"></div>
+      <div class="frame-line-left"></div>
+      <div class="frame-line-right"></div>
+
+      <h1>Marcos y molduras<br>de calidad importada</h1>
+      <div class="hero-separator"></div>
+      <p class="hero-sub">Importación directa · Bolivia</p>
+    </div>
+
+    <div class="hero-cta">
+      <a href="/catalogo" class="hero-btn-primary">Explorar catálogo</a>
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="hero-btn-ghost">Contactar</a>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+
+  function initHeroAnimation() {
+    const content = document.querySelector('.hero-content');
+    const vLines = document.querySelectorAll('.g-line.v');
+    const hLines = document.querySelectorAll('.g-line.h');
+    if (!content || !vLines.length || !hLines.length) return;
+
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    // 1. Contenido central: fade in en su lugar (sin moverse)
+    gsap.set(content, { opacity: 0 });
+    tl.to(content, {
+      opacity: 1,
+      duration: 0.5,
+      ease: 'power2.out',
+    });
+
+    // 2. Ocultar líneas
+    gsap.set(vLines, { scaleY: 0, transformOrigin: 'top center' });
+    gsap.set(hLines, { scaleX: 0, transformOrigin: 'left center' });
+
+    // 3. Dibujar al mismo tiempo que aparece el título
+    // Orden mezclado: v1, h3, v3, h1, v4, h2, v2
+    const drawOrder = [
+      { el: vLines[0], prop: 'scaleY' },
+      { el: hLines[2], prop: 'scaleX' },
+      { el: vLines[2], prop: 'scaleY' },
+      { el: hLines[0], prop: 'scaleX' },
+      { el: vLines[3], prop: 'scaleY' },
+      { el: hLines[1], prop: 'scaleX' },
+      { el: vLines[1], prop: 'scaleY' },
+    ];
+
+    drawOrder.forEach((item, i) => {
+      if (!item.el) return;
+      const props = { duration: 0.5, ease: 'power2.out' };
+      props[item.prop] = 1;
+      tl.to(item.el, props, 0.01 + i * 0.06);
+    });
+  }
+
+  initHeroAnimation();
+</script>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Fondo negro con textura */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* Gradiente sutil para profundidad */
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(28, 25, 23, 0.15) 0%, rgba(28, 25, 23, 0.5) 80%);
+  }
+
+  /* ===== Grilla de lineas ===== */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .g-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* Verticales */
+  .g-line.v {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+  }
+  .g-line.v:nth-child(1) { left: 20%; }
+  .g-line.v:nth-child(2) { left: 40%; }
+  .g-line.v:nth-child(3) { left: 60%; }
+  .g-line.v:nth-child(4) { left: 80%; }
+
+  /* Horizontales */
+  .g-line.h {
+    height: 1px;
+    left: 0;
+    right: 0;
+  }
+  .g-line.h:nth-child(5) { top: 14%; }
+  .g-line.h:nth-child(6) { top: 50%; }
+  .g-line.h:nth-child(7) { top: 80%; }
+
+  /* Horizontales 1ra y 3ra: se desvanecen al centro */
+  .g-line.h:nth-child(5),
+  .g-line.h:nth-child(7) {
+    background: none;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.04) 20%,
+      rgba(255, 255, 255, 0) 32%,
+      rgba(255, 255, 255, 0) 68%,
+      rgba(255, 255, 255, 0.04) 80%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  }
+
+  /* Verticales exteriores (1ra y 4ta): desvanecimiento suave */
+  .g-line.v:nth-child(1),
+  .g-line.v:nth-child(4) {
+    background: none;
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.04) 75%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  }
+
+  /* Verticales interiores (2da y 3ra): se desvanecen mas */
+  .g-line.v:nth-child(2),
+  .g-line.v:nth-child(3) {
+    background: none;
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.04) 20%,
+      rgba(255, 255, 255, 0) 32%,
+      rgba(255, 255, 255, 0) 68%,
+      rgba(255, 255, 255, 0.04) 80%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  }
+
+  /* Horizontal central: se desvanece al centro */
+  .g-line.h:nth-child(6) {
+    background: none;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.04) 28%,
+      rgba(255, 255, 255, 0) 38%,
+      rgba(255, 255, 255, 0) 62%,
+      rgba(255, 255, 255, 0.04) 72%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  }
+
+  /* ===== Contenido central ===== */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 24px;
+    max-width: 800px;
+  }
+
+  /* Marco geometrico */
+  .frame-wrapper {
+    position: relative;
+    padding: 60px 64px;
+    margin-bottom: 40px;
+  }
+
+  /* Esquinas del marco */
+  .frame-corner {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+  }
+  .frame-corner::before,
+  .frame-corner::after {
+    content: '';
+    position: absolute;
+    background: rgba(249, 115, 22, 0.4);
+  }
+  .frame-corner::before {
+    height: 1px;
+    width: 100%;
+  }
+  .frame-corner::after {
+    width: 1px;
+    height: 100%;
+  }
+
+  .frame-corner.top-left { top: 0; left: 0; }
+  .frame-corner.top-left::before { top: 0; left: 0; }
+  .frame-corner.top-left::after { top: 0; left: 0; }
+
+  .frame-corner.top-right { top: 0; right: 0; }
+  .frame-corner.top-right::before { top: 0; right: 0; }
+  .frame-corner.top-right::after { top: 0; right: 0; }
+
+  .frame-corner.bottom-left { bottom: 0; left: 0; }
+  .frame-corner.bottom-left::before { bottom: 0; left: 0; }
+  .frame-corner.bottom-left::after { bottom: 0; left: 0; }
+
+  .frame-corner.bottom-right { bottom: 0; right: 0; }
+  .frame-corner.bottom-right::before { bottom: 0; right: 0; }
+  .frame-corner.bottom-right::after { bottom: 0; right: 0; }
+
+  /* Lineas conectoras entre esquinas */
+  .frame-line-top,
+  .frame-line-bottom {
+    position: absolute;
+    left: 48px;
+    right: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(249, 115, 22, 0.3) 0%, rgba(249, 115, 22, 0.08) 50%, rgba(249, 115, 22, 0.3) 100%);
+  }
+  .frame-line-top { top: 0; }
+  .frame-line-bottom { bottom: 0; }
+
+  .frame-line-left,
+  .frame-line-right {
+    position: absolute;
+    top: 48px;
+    bottom: 48px;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(249, 115, 22, 0.3) 0%, rgba(249, 115, 22, 0.08) 50%, rgba(249, 115, 22, 0.3) 100%);
+  }
+  .frame-line-left { left: 0; }
+  .frame-line-right { right: 0; }
+
+  /* Headline */
+  .hero h1 {
+    font-size: 52px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  /* Separador */
+  .hero-separator {
+    width: 48px;
+    height: 1px;
+    background: var(--color-orange);
+    margin: 28px auto;
+  }
+
+  /* Subtitulo */
+  .hero-sub {
+    font-size: 16px;
+    color: var(--color-text-on-dark);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* CTAs */
+  .hero-cta {
+    margin-top: 48px;
+  }
+
+  .hero-btn-primary,
+  .hero-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 36px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+  }
+
+  .hero-btn-primary {
+    background: var(--color-orange);
+    color: white;
+  }
+  .hero-btn-primary:hover {
+    background: var(--color-orange-hover);
+    transform: translateY(-1px);
+  }
+
+  .hero-btn-ghost {
+    background: transparent;
+    color: var(--color-text-on-dark);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-left: 16px;
+  }
+  .hero-btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: white;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 34px; }
+    .frame-wrapper { padding: 40px 32px; }
+    .frame-corner { width: 32px; height: 32px; }
+    .frame-line-top, .frame-line-bottom { left: 32px; right: 32px; }
+    .frame-line-left, .frame-line-right { top: 32px; bottom: 32px; }
+    .hero-sub { font-size: 13px; letter-spacing: 0.08em; }
+    .hero-btn-primary,
+    .hero-btn-ghost { padding: 12px 28px; font-size: 14px; }
+    .hero-btn-ghost { margin-left: 0; margin-top: 12px; }
+    .hero-cta { display: flex; flex-direction: column; align-items: center; }
+    .g-line.v:nth-child(2),
+    .g-line.v:nth-child(3) { display: none; }
+    .g-line.v:nth-child(1),
+    .g-line.v:nth-child(4) {
+      background: none;
+      background-image: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(255, 255, 255, 0.04) 20%,
+        rgba(255, 255, 255, 0) 32%,
+        rgba(255, 255, 255, 0) 68%,
+        rgba(255, 255, 255, 0.04) 80%,
+        rgba(255, 255, 255, 0.04) 100%
+      );
+    }
+    .g-line.h:nth-child(6) { display: none; }
+  }
+</style>

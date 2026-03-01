@@ -1,0 +1,116 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  transparentHeader?: boolean;
+}
+
+const {
+  title,
+  description = 'Importacion directa de marcos y molduras de alta calidad. Enmarcado profesional para cuadros, espejos, diplomas y decoracion en Bolivia.',
+  ogImage = '/og-image.png',
+  transparentHeader = true,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="es_BO" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Figtree font — font-display: fallback para Bolivia (conexiones lentas) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=fallback"
+      rel="stylesheet"
+    />
+
+    <!-- View Transitions (MPA que se siente como SPA, 0 KB JS) -->
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header transparent={transparentHeader} />
+    <slot />
+    <Footer />
+
+    <!-- GSAP — se carga UNA vez, disponible en todas las paginas via View Transitions -->
+    <script>
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.config({ nullTargetWarn: false });
+
+      // Exponer globalmente para componentes que lo necesiten
+      window.gsap = gsap;
+      window.ScrollTrigger = ScrollTrigger;
+    </script>
+
+    <!-- Lenis smooth scroll — inicializado una vez, sincronizado con GSAP -->
+    <script>
+      import Lenis from 'lenis';
+
+      let lenis: Lenis | null = null;
+
+      function initLenis() {
+        // Limpiar instancia anterior si existe
+        if (lenis) {
+          lenis.destroy();
+        }
+
+        lenis = new Lenis({
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          touchMultiplier: 2,
+        });
+
+        // Sincronizar con GSAP ScrollTrigger
+        lenis.on('scroll', () => {
+          window.ScrollTrigger?.update();
+        });
+
+        // Conectar al ticker de GSAP para un loop unificado
+        window.gsap?.ticker.add((time: number) => {
+          lenis?.raf(time * 1000);
+        });
+        window.gsap?.ticker.lagSmoothing(0);
+
+        window.lenis = lenis;
+      }
+
+      // Inicializar en carga y re-inicializar en navegacion View Transitions
+      document.addEventListener('astro:page-load', initLenis, { once: false });
+    </script>
+  </body>
+</html>

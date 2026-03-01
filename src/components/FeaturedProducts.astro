@@ -1,0 +1,239 @@
+---
+import img2 from '../assets/portadas/marco_portada2.png';
+import img4 from '../assets/portadas/marco_portada4.png';
+import img5 from '../assets/portadas/marco_portada5.png';
+import img12 from '../assets/portadas/marco_portada12.png';
+import img13 from '../assets/portadas/marco_portada13.png';
+import img14 from '../assets/portadas/marco_portada14.png';
+
+const products = [
+  { img: img2.src,  label: 'Clásico',     name: 'Molduras Doradas' },
+  { img: img5.src,  label: 'Moderno',      name: 'Tonos Claros' },
+  { img: img12.src, label: 'Ornamental',   name: 'Tallado Artesanal' },
+  { img: img14.src, label: 'Texturizado',  name: 'Mosaico Contemporáneo' },
+  { img: img13.src, label: 'Metálico',     name: 'Bronce y Plata' },
+  { img: img4.src,  label: 'Elegante',     name: 'Madera con Dorado' },
+];
+---
+
+<section class="fp-section">
+  <div class="fp-inner">
+    <p class="fp-eyebrow">Nuestros productos</p>
+    <h2 class="fp-title">Estilos para cada espacio</h2>
+
+    <div class="fp-grid">
+      {products.map((p) => (
+        <div class="fp-item">
+          <img class="fp-img" src={p.img} alt={p.name} loading="lazy" />
+          <div class="fp-overlay">
+            <span class="fp-label">{p.label}</span>
+            <span class="fp-name">{p.name}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="fp-cta">
+      <a href="/catalogo">
+        Ver catálogo completo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fp-section {
+    background: var(--color-crema);
+    padding: 96px 24px;
+  }
+
+  .fp-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .fp-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .fp-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--color-text-heading);
+    text-align: center;
+    letter-spacing: -0.02em;
+    margin-bottom: 64px;
+  }
+
+  /* Bento Grid */
+  .fp-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+
+  .fp-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #f5f0eb;
+    cursor: pointer;
+  }
+
+  .fp-item:nth-child(1) { grid-column: span 6; }
+  .fp-item:nth-child(2) { grid-column: span 3; }
+  .fp-item:nth-child(3) { grid-column: span 3; }
+  .fp-item:nth-child(4) { grid-column: span 4; }
+  .fp-item:nth-child(5) { grid-column: span 4; }
+  .fp-item:nth-child(6) { grid-column: span 4; }
+
+  .fp-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .fp-item:nth-child(1) .fp-img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .fp-item:hover .fp-img {
+    transform: scale(1.04);
+  }
+
+  /* Overlay */
+  .fp-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(28, 25, 23, 0.75) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .fp-item:hover .fp-overlay {
+    opacity: 1;
+  }
+
+  .fp-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+
+  .fp-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* CTA */
+  .fp-cta {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .fp-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: var(--color-charcoal);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    transition: background 0.3s ease;
+  }
+
+  .fp-cta a:hover {
+    background: var(--color-orange);
+  }
+
+  .fp-cta a svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .fp-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .fp-item:nth-child(1) { grid-column: span 2; }
+    .fp-item:nth-child(2) { grid-column: span 1; }
+    .fp-item:nth-child(3) { grid-column: span 1; }
+    .fp-item:nth-child(4) { grid-column: span 1; }
+    .fp-item:nth-child(5) { grid-column: span 1; }
+    .fp-item:nth-child(6) { grid-column: span 2; }
+
+    .fp-img {
+      aspect-ratio: 4 / 3 !important;
+    }
+
+    .fp-title { font-size: 28px; margin-bottom: 48px; }
+    .fp-section { padding: 64px 24px; }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const items = gsap.utils.toArray('.fp-item');
+  const images = gsap.utils.toArray('.fp-img');
+
+  if (items.length) {
+    // Estado inicial
+    gsap.set(items, { opacity: 0, y: 40 });
+    gsap.set(images, { clipPath: 'inset(100% 0 0 0)' });
+
+    // Reveal escalonado al hacer scroll
+    ScrollTrigger.batch(items, {
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.15,
+          duration: 0.6,
+          ease: 'power2.out',
+          overwrite: true,
+        });
+        batch.forEach((item, i) => {
+          const img = item.querySelector('.fp-img');
+          gsap.to(img, {
+            clipPath: 'inset(0% 0 0 0)',
+            duration: 0.8,
+            delay: i * 0.15,
+            ease: 'power3.inOut',
+          });
+        });
+      },
+      start: 'top 85%',
+      once: true,
+    });
+  }
+</script>
+
